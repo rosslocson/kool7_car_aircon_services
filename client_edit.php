@@ -1,10 +1,21 @@
-<!DOCTYPE html>
+<?php
+include 'conn.php';
+
+if (isset($_GET['id'])) {
+    $client_id = mysqli_real_escape_string($conn, $_GET['id']);
+    $query = "SELECT * FROM appointments WHERE id='$client_id'";
+    $query_run = mysqli_query($conn, $query);
+
+    if (mysqli_num_rows($query_run) > 0) {
+        $client = mysqli_fetch_array($query_run);
+?>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Client</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Edit Client</title>
 </head>
 <body>
     <div class="container mt-5">
@@ -13,53 +24,56 @@
                 <div class="card">
                     <div class="card-header">
                         <h4>Edit Client 
-                            <a href="#" class="btn btn-danger float-end" onclick="submitForm()">Submit</a>
+                            <a href="index.php" class="btn btn-danger float-end">BACK</a>
                         </h4>
                     </div>
                     <div class="card-body">
-                        <form id="edit-form" action="update_client.php" method="POST">
-                            <input type="hidden" name="client_id" value="<?= isset($client['client_id']) ? $client['client_id'] : '' ?>">
+                        <form action="update_client.php" method="POST" onsubmit="return confirm('Are you sure you want to update this client?');">
+                            <input type="hidden" name="client_id" value="<?= $client_id ?>">
                             <div class="mb-3">
                                 <label>Name</label>
-                                <input type="text" name="name" class="form-control" value="<?= isset($client['name']) ? $client['name'] : '' ?>">
+                                <input type="text" name="name" class="form-control" value="<?= $client['name'] ?>">
                             </div>
                             <div class="mb-3">
                                 <label>Email</label>
-                                <input type="email" name="email" class="form-control" value="<?= isset($client['email']) ? $client['email'] : '' ?>">
+                                <input type="email" name="email" class="form-control" value="<?= $client['email'] ?>">
                             </div>
                             <div class="mb-3">
                                 <label>Contact Number</label>
-                                <input type="number" name="contact_number" class="form-control" value="<?= isset($client['contact_number']) ? $client['contact_number'] : '' ?>">
+                                <input type="number" name="contact_number" class="form-control" value="<?= $client['contact_number'] ?>">
                             </div>
                             <div class="mb-3">
                                 <label>Car Model</label>
-                                <input type="text" name="car_model" class="form-control" value="<?= isset($client['car_model']) ? $client['car_model'] : '' ?>">
+                                <input type="text" name="car_model" class="form-control" value="<?= $client['car_model'] ?>">
                             </div>
                             <div class="mb-3">
                                 <label>Year Model</label>
-                                <input type="text" name="year_model" class="form-control" value="<?= isset($client['year_model']) ? $client['year_model'] : '' ?>">
+                                <input type="text" name="year_model" class="form-control" value="<?= $client['year_model'] ?>">
                             </div>
                             <div class="form__group">
                                 <label for="service">Preferred Service:</label>
                                 <select id="service" name="preferred_service" class="form-control">
                                     <option value="">-- Select a Service --</option>
-                                    <option value="general" <?= isset($client['preferred_service']) && $client['preferred_service'] == 'general' ? 'selected' : '' ?>>GENERAL SERVICES</option>
-                                    <option value="diagnostics" <?= isset($client['preferred_service']) && $client['preferred_service'] == 'diagnostics' ? 'selected' : '' ?>>CAR AIRCON DIAGNOSTICS SERVICES</option>
-                                    <option value="cleaning" <?= isset($client['preferred_service']) && $client['preferred_service'] == 'cleaning' ? 'selected' : '' ?>>CAR AIRCON CLEANING SERVICES</option>
-                                    <option value="replacement" <?= isset($client['preferred_service']) && $client['preferred_service'] == 'replacement' ? 'selected' : '' ?>>CAR AIRCON REPLACEMENT SERVICES</option>
+                                    <option value="general" <?= $client['preferred_service'] == 'general' ? 'selected' : '' ?>>GENERAL SERVICES</option>
+                                    <option value="diagnostics" <?= $client['preferred_service'] == 'diagnostics' ? 'selected' : '' ?>>CAR AIRCON DIAGNOSTICS SERVICES</option>
+                                    <option value="cleaning" <?= $client['preferred_service'] == 'cleaning' ? 'selected' : '' ?>>CAR AIRCON CLEANING SERVICES</option>
+                                    <option value="replacement" <?= $client['preferred_service'] == 'replacement' ? 'selected' : '' ?>>CAR AIRCON REPLACEMENT SERVICES</option>
                                 </select>
                             </div>
                             <div class="mb-3">
                                 <label>Date</label>
-                                <input type="date" name="date" class="form-control" value="<?= isset($client['date']) ? $client['date'] : '' ?>">
+                                <input type="date" name="date" class="form-control" value="<?= $client['date'] ?>">
                             </div>
                             <div class="mb-3">
                                 <label>Time</label>
-                                <input type="time" name="time" class="form-control" value="<?= isset($client['time']) ? $client['time'] : '' ?>">
+                                <input type="time" name="time" class="form-control" value="<?= $client['time'] ?>">
                             </div>
                             <div class="mb-3">
                                 <label>Additional Message</label>
-                                <input type="text" name="additional_message" class="form-control" value="<?= isset($client['additional_message']) ? $client['additional_message'] : '' ?>">
+                                <input type="text" name="additional_message" class="form-control" value="<?= $client['additional_message'] ?>">
+                            </div>
+                            <div class="mb-3">
+                                <button type="submit" name="update_client" class="btn btn-primary">Update Client</button>
                             </div>
                         </form>
                     </div>
@@ -67,27 +81,17 @@
             </div>
         </div>
     </div>
-    <script>
-        function submitForm() {
-            // Submit the form asynchronously
-            fetch('update_client.php', {
-                method: 'POST',
-                body: new FormData(document.getElementById('edit-form'))
-            })
-            .then(response => {
-                if (response.ok) {
-                    // Display pop-up message
-                    alert("Book Successfully!");
-                    // Redirect to index.php after successful submission
-                    window.location.href = 'index.php';
-                } else {
-                    console.error('Failed to update client.');
-                }
-            })
-            .catch(error => console.error('Error:', error));
-        }
-    </script>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        <?php if (isset($_GET['success']) && $_GET['success'] == 'true'): ?>
+            alert('Update successful!');
+        <?php endif; ?>
+    </script>
 </body>
 </html>
+<?php
+    } else {
+        echo "<h4>No Such Id Found</h4>";
+    }
+}
+?>

@@ -6,8 +6,46 @@
   <title>Book Your Appointment</title>
   <link rel="stylesheet" href="form-style.css">
   <link rel="stylesheet" href="appointment-style.css"> <!-- New CSS file for appointment page -->
+  <style>
+    /* Basic styles for the navigation bar */
+    nav {
+      background-color: #333;
+      color: #fff;
+    }
+
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    li {
+      float: left;
+    }
+
+    li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+
+    /* Change the link color when hovered */
+    li a:hover {
+      background-color: #111;
+    }
+  </style>
 </head>
 <body>
+
+<nav>
+  <ul>
+    <li><a href="index.php">Back to Home</a></li>
+  </ul>
+</nav>
+  
   
 <div class="container">
     <div class="header">
@@ -66,6 +104,7 @@
     </div>
   </div>
   
+  
   <script>
     function validateForm() {
       // Add validation logic here
@@ -75,4 +114,5 @@
   </script>
   
 </body>
+
 </html>

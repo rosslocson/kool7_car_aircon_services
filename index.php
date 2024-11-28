@@ -1,3 +1,26 @@
+<?php
+// for contact_info table
+// Database connection parameters
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "kool7_car_aircon_specialist";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $database);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// SQL query to select data from your table
+$sql = "SELECT id, phone, address, email FROM contact_info";
+
+// Execute the query
+$result = $conn->query($sql);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -59,71 +82,99 @@
       </div>
       <div class="experience__content">
         <p class="section__subheader">WHO WE ARE</p>
-        <h2 class="section__header">
-          We Have 28 Years Of Experience In This Field
-        </h2>
-        <p class="section__description">
-            With an impressive 28-year legacy in air conditioning services, our dedication to delivering
-            excellence remains steadfast. Throughout the ups and downs of business, our highly experienced 
-            team has weathered every challenge, emerging stronger and more resilient. Drawing from
-            decades of expertise, we guarantee unparalleled care for your air conditioning system. Rely on our 
-            seasoned professionals to navigate any obstacle and ensure optimal performance and safety for 
-            all your cooling needs.</p>
-            <a href="appointment-form.php" class="btn btn--responsive">Book Now</a>
-      </div>
+        <?php
+// Assuming you have already established a database connection
+// Replace the placeholders with your actual database connection details
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "kool7_car_aircon_specialist";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Retrieve data from the 'about_us' table in the database
+$sql = "SELECT * FROM about_us";
+$result = $conn->query($sql);
+
+// Check if there are any rows returned
+if ($result->num_rows > 0) {
+    // Output data of each row
+    while($row = $result->fetch_assoc()) {
+        echo "<h2 class='section__header'>" . $row["title"] . "</h2>";
+        echo "<p class='section__description'>" . $row["description"] . "</p>";
+        echo "<a href='appointment-form.php' class='btn btn--responsive'>Book Now</a>";
+    }
+} else {
+    echo "0 results";
+}
+$conn->close();
+?>
+
     </section>
 
     <section class="service" id="service">
-      <div class="section__container service__container">
+    <div class="section__container service__container">
         <p class="section__subheader">WHY CHOOSE US</p>
         <h2 class="section__header">Great Car Services</h2>
         <p id="desc">
-            Trust us to keep your cooling system running smoothly and reliably, 
+            Trust us to keep your cooling system running smoothly and reliably,
             ensuring comfort even in the hottest conditions.
         </p>
         <div class="service__grid">
-          <div class="service__card">
-            <img src="service-1.jpg" alt="service" />
-            <h4>Car Aircon Repair</h4>
-            <p>
-                Experience Comfort on the Road with Car Aircon Repair. 
-                Professional Service to Ensure Optimal Cooling. 
-                Expert Repairs, Conveniently Scheduled. 
-            </p>
-          </div>
-          <div class="service__card">
-            <img src="service-2.jpg" alt="service" />
-            <h4>Car Aircon Diagnostics</h4>
-            <p>
-              Stay composed with our special offer—comprehensive diagnostics available to our esteemed customers, 
-              ensuring optimal performance of your car's air conditioning system for every ride.
-            </p>
-          </div>
-          <div class="service__card">
-            <img src="service-3.jpg" alt="service" />
-            <h4>Ripper Truck Air Conditioning Installation</h4>
-            <p>
-                Enhance Your Work Environment with Ripper Truck Air Conditioning Installation. 
-                Our Professional Services Ensure Comfortable Operations, Maximizing Productivity. 
-                Trust Expert Installations Tailored to Your Fleet's Needs.
-            </p>
-          </div>
-          <div class="service__card">
-            <img src="service-4.jpg" alt="service" />
-            <h4>Regular Maintenance of Car Aircon</h4>
-            <p>
-                Experience Lasting Comfort with Our Air Conditioning Maintenance Service. 
-                Our Expert Technicians Conduct Regular Inspections and Tune-ups to Ensure Optimal Performance and Efficiency. 
-            </p>
-          </div>
+            <?php
+            // Database connection parameters
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $database = "kool7_car_aircon_specialist";
+
+            // Create connection
+            $conn = new mysqli($servername, $username, $password, $database);
+
+            // Check connection
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
+
+            // SQL query to select titles, descriptions, and image paths from services table
+            $sql = "SELECT title, description, image_path FROM services";
+
+            // Execute the query
+            $result = $conn->query($sql);
+
+            // Check if there are results
+            if ($result->num_rows > 0) {
+                // Output data of each row
+                while ($row = $result->fetch_assoc()) {
+                    echo '<div class="service__card">';
+                    echo '<img src="' . $row["image_path"] . '" alt="' . $row["title"] . '">';
+                    echo '<h4>' . $row["title"] . '</h4>';
+                    echo '<p>' . $row["description"] . '</p>';
+                    echo '</div>';
+                }
+            } else {
+                echo "0 results";
+            }
+
+            // Close the connection
+            $conn->close();
+            ?>
         </div>
-      </div>
-    </section>
+    </div>
+</section>
+
+
     
 
     <section class="customisation">
       <div class="section__container customisation__container">
-        <p class="section__subheader">OUR CUSTOMISATION</p>
+        <p class="section__subheader">OUR CUSTOMIZATION</p>
         <h2 class="section__header">
           Air Conditioning Servicing Paired with Exceptional Craftsmanship
         </h2>
@@ -150,125 +201,124 @@
         </div>
       </div>
     </section>
+<?php
+    // Include database connection
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "kool7_car_aircon_specialist";
 
-    <section class="section__container price__container" id="price">
-      <p class="section__subheader">PACKAGES</p>
-      <h2 class="section__header">We offer a range of cost-effective and adaptable prices.</h2>
-      <div class="price__grid">
-        <div class="price__card">
-          <h4>GENERAL SERVICES</h4>
-          <h3><sup>₱</sup>2,500.00~ UP</h3>
-          <p>Diagnose the issue.</p>
-          <p>Repair or replace faulty components.</p>
-          <p>Test the system to ensure proper functionality.</p>
-          <p>Provide maintenance recommendations to prevent future breakdowns.</p>
-          <a href="appointment-form.php" class="btn btn--responsive">Book Now</a>
-          <p></p>
-          <p></p>
-          <p><strong>"The price varies depending on the brand of car and the year model."</strong></p>
+$conn = new mysqli($servername, $username, $password, $database);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Query to fetch prices from the database
+$sql = "SELECT title, description, price FROM packages";
+$result = $conn->query($sql);
+?>
+
+<section class="section__container price__container" id="price">
+    <p class="section__subheader">PACKAGES</p>
+    <h2 class="section__header">We offer a range of cost-effective and adaptable prices.</h2>
+    <div class="price__grid-container" style="display: flex; justify-content: center;">
+        <div class="price__grid" style="display: flex; flex-wrap: wrap;">
+            <?php
+            $package_index = 0; // Initialize package index
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    $package_index++; // Increment package index
+                    ?>
+                    <div class="price__card" style="flex: 0 0 50%; max-width: calc(45% - 20px); margin: 0 10px 20px;">
+                        <?php if ($package_index == 3) { ?>
+                            <div class="price__card__ribbon">POPULAR CHOICE</div>
+                        <?php } ?>
+                        <h5><?php echo $row['title']; ?></h5>
+                        <h4><sup></sup><?php echo $row['price']; ?></h4>
+                        <p><?php echo nl2br($row['description']); ?></p>
+                        <a href="appointment-form.php" class="btn btn--responsive">Book Now</a>
+                        <p><strong>"The price varies depending on the brand of car and the year model."</strong></p>
+                    </div>
+                    <?php
+                }
+            } else {
+                echo "No packages available.";
+            }
+            ?>
         </div>
-        <div class="price__card">
-          <h4>CAR AIRCON DIAGNOSTICS SERVICES</h4>
-          <h3><sup>₱</sup>1,000.00</h3>
-          <p>Checking refrigerant levels.</p>
-          <p>Inspecting for leaks in the system.</p>
-          <p>Testing compressor functionality.</p>
-          <p>Evaluating electrical connections.</p>
-          <p>Assessing temperature and pressure readings.</p>
-          <p>Checking for blockages in the system.</p>
-          <p>Examining cabin air filters.</p>
-          <p>Conducting a visual inspection of components for wear or damage.</p>
-          <a href="appointment-form.php" class="btn btn--responsive">Book Now</a>
-          <p></p>
-          <p></p>
-          <p><strong>"The price varies depending on the brand of car and the year model."</strong></p>
-        </div>
-        <div class="price__card">
-          <div class="price__card__ribbon">POPULAR CHOICE</div>
-          <h4>CAR AIRCON CLEANING SERVICES</h4>
-          <h3><sup>₱</sup>2,500.00~ UP</h3>
-          <p>Evaporator coil cleaning.</p>
-          <p>Condenser coil cleaning.</p>
-          <p>Air filter replacement.</p>
-          <p>Drain line clearing.</p>
-          <p>Disinfecting evaporator housing.</p>
-          <p>Checking and topping up refrigerant levels.</p>
-          <p>Inspecting and cleaning blower fan.</p>
-          <p>Visual inspection of ductwork for blockages.</p>
-          <a href="appointment-form.php" class="btn btn--responsive">Book Now</a>
-          <p></p>
-          <p></p>
-          <p><strong>"The price varies depending on the brand of car and the year model."</strong></p>
-        </div>
-        <div class="price__card">
-          <h4>CAR AIRCON REPLACEMENT SERVICES</h4>
-          <h3><sup>₱</sup>2,500.00~ UP</h3>
-          <p>Removal of old air conditioning components.</p>
-          <p>Installation of new compressor.</p>
-          <p>Replacement of evaporator and condenser coils.</p>
-          <p>Installation of new air filter.</p>
-          <p>Testing system for leaks and pressure.</p>
-          <p>Charging system with refrigerant.</p>
-          <p>Testing system functionality.</p>
-          <a href="appointment-form.php" class="btn btn--responsive">Book Now</a>
-          <p></p>
-          <p></p>
-          <p><strong>"The price varies depending on the brand of car and the year model."</strong></p>
-        </div>
-      </div>
-    </section>
+    </div>
+</section>
+
+
+
+
+
+
 
     
 
-    <section class="section__container testimonial__container" id="client">
-      <p class="section__subheader">CLIENT TESTIMONIALS</p>
-      <h2 class="section__header">100% Approved By Customers</h2>
-      <!-- Slider main container -->
-      <div class="swiper">
+<?php
+// Connect to your database
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "kool7_car_aircon_specialist";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Fetch testimonials from the database
+$sql = "SELECT * FROM testimonials";
+$result = $conn->query($sql);
+
+?>
+
+<section class="section__container testimonial__container" id="client">
+    <p class="section__subheader">CLIENT TESTIMONIALS</p>
+    <h2 class="section__header">100% Approved By Customers</h2>
+    <!-- Slider main container -->
+    <div class="swiper">
         <!-- Additional required wrapper -->
         <div class="swiper-wrapper">
-          <!-- Slides -->
-          <div class="swiper-slide">
-            <div class="testimonial__card">
-              <img src="testimonial-1.jpg" alt="testimonial" />
-              <p>
-                The car air conditioning service exceeded my expectations. 
-                Not only did they fix the issues promptly, but the cooling system now works better than ever. 
-                I'm impressed by their professionalism and attention to detail. 
-                Highly recommended!
-              </p>
-              <h4>Kirstie E.</h4>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="testimonial__card">
-              <img src="testimonial-2.jpg" alt="testimonial" />
-              <p>
-                I recently had my car's air conditioning serviced, and I couldn't be happier with the results. 
-                The team was efficient, knowledgeable, and courteous throughout the process. 
-                Now, my car feels like a haven of cool comfort, thanks to their excellent workmanship. 
-                I'll definitely be returning for future maintenance.
-              </p>
-              <h4>- Mervin B.</h4>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="testimonial__card">
-              <img src="testimonial-3.jpg" alt="testimonial" />
-              <p>
-                As a car enthusiast, I'm very selective about who handles my beloved vehicle. 
-                The team's dedication and proficiency in car air conditioning truly stand out. 
-                My car's cooling system has never performed better, 
-                and its overall condition has never been more impressive.
-              </p>
-              <h4>- Jaycee C.</h4>
-            </div>
-          </div>
+            <!-- Slides -->
+            <?php
+            if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                    echo '<div class="swiper-slide">';
+                    echo '<div class="testimonial__card">';
+                    echo '<img src="' . $row["image"] . '" alt="testimonial" />';
+                    echo '<p>' . $row["content"] . '</p>';
+                    echo '<h4>' . $row["author"] . '</h4>';
+                    echo '</div>';
+                    echo '</div>';
+                }
+            } else {
+                echo "0 results";
+            }
+            ?>
         </div>
         <!-- If we need pagination -->
         <div class="swiper-pagination"></div>
-      </div>
+    </div>
+    <section class="section__container feedback__container">
+        <div class="feedback__button">
+        <a href="feedback.php" class="btn btn--responsive">Leave Feedback</a>
+        </div>
     </section>
+</section>
+
+<?php
+// Close the connection
+$conn->close();
+?>
+
+
 
     <section class="map-container">
       <!-- Embed Google Maps iframe with your location -->
@@ -282,28 +332,87 @@
     <footer class="footer" id="footer">
       <div class="section__container footer__container">
         <div class="footer__col">
-          <div class="logo footer__logo">
-            <a href="#"><img src="logo 2.png" alt="logo" /></a>
-          </div>
-          <p class="section__description">
-            With a proud history of 28 years, 
-            our dedication to exceptional car air conditioning servicing remains steadfast.
-          </p>
+        <?php
+// Include database connection
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "kool7_car_aircon_specialist";
+
+$conn = new mysqli($servername, $username, $password, $database);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Query to fetch footer content from the database
+$sql = "SELECT logo_path, description FROM footer_content";
+$result = $conn->query($sql);
+
+// Fetch the data
+$row = $result->fetch_assoc();
+$logo_path = $row['logo_path'];
+$description = $row['description'];
+?>
+
+<div class="logo footer__logo">
+    <a href="#"><img src="<?php echo $logo_path; ?>" alt="logo" /></a>
+</div>
+<p class="section__description">
+    <?php echo $description; ?>
+</p>
+
+<?php
+// Close the connection
+$conn->close();
+?>
+
           <ul class="footer__socials">
             <li>
               <a href="https://www.facebook.com/pages/Kool-7-Car-Aircon-Specialist/121817075029394"><i class="ri-facebook-fill"></i></a>
             </li>
           </ul>
         </div>
-        <div class="footer__col">
-          <h4>Our Services</h4>
-          <ul class="footer__links">
-            <li><a href="#service">GENERAL SERVICES</a></li>
-            <li><a href="#service">CAR AIRCON DIAGNOSTICS SERVICES</a></li>
-            <li><a href="#service">CAR AIRCON CLEANING SERVICES</a></li>
-            <li><a href="#service">CAR AIRCON REPLACEMENT SERVICES</a></li>
-          </ul>
-        </div>
+        <?php
+// Include database connection
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "kool7_car_aircon_specialist";
+
+$conn = new mysqli($servername, $username, $password, $database);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Query to fetch services from the database
+$sql = "SELECT service_name, service_link FROM general_services";
+$result = $conn->query($sql);
+?>
+
+<div class="footer__col">
+    <h4>Our Services</h4>
+    <ul class="footer__links">
+        <?php
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo '<li><a href="' . $row['service_link'] . '">' . $row['service_name'] . '</a></li>';
+            }
+        } else {
+            echo "No services available.";
+        }
+        ?>
+    </ul>
+</div>
+
+<?php
+// Close the connection
+$conn->close();
+?>
+
         <div class="footer__col">
           <h4>Contact Info</h4>
           <ul class="footer__links">
@@ -313,18 +422,56 @@
                 ensuring every ride is a cool, comfortable journey.
               </p>
             </li>
+            <?php
+    // Database connection parameters
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $database = "kool7_car_aircon_specialist";
+
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $database);
+
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    // SQL query to select data from your_table
+    $sql = "SELECT phone, address, email, hours FROM contact_info";
+
+    // Execute the query
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        // Output data of the first row
+        $row = $result->fetch_assoc();
+        ?>
+        <div class="footer__col">
+          <h4>Contact Info</h4>
+          <ul class="footer__links">
             <li>
-              <p>Phone: <span>+63 921 555 2995</span></p>
+              <p>Phone: <span><?php echo $row["phone"]; ?></span></p>
             </li>
             <li>
-              <p>Address: <span>346 Brgy. Concepcion San Pablo City Laguna</span></p>
+              <p>Address: <span><?php echo $row["address"]; ?></span></p>
             </li>
             <li>
-              <p>Email: <span>kool7carspecialist@gmail.com</span></p>
+              <p>Email: <span><?php echo $row["email"]; ?></span></p>
+            </li>
+            <li>
+              <p>Business Hours: <span><?php echo $row["hours"]; ?></span></p>
             </li>
           </ul>
         </div>
-      </div>
+        <?php
+    } else {
+        echo "0 results";
+    }
+
+    // Close the connection
+    $conn->close();
+    ?>
       <script>
         // Get user's location using Geolocation API
         function getUserLocation() {

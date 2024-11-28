@@ -1,122 +1,193 @@
-<?php
-session_start(); // Start session
-
-// Check if user is logged in
-if(!isset($_SESSION['username'])) {
-    header("Location: login.php"); // Redirect to login page if not logged in
-    exit();
-}
-
-// Include database connection
-include 'conn.php';
-
-// Check if appointment ID is provided
-if(isset($_GET['id'])) {
-    $appointment_id = mysqli_real_escape_string($conn, $_GET['id']);
-
-    // Fetch appointment details
-    $sql = "SELECT * FROM appointments WHERE id='$appointment_id'";
-    $result = mysqli_query($conn, $sql);
-
-    if(mysqli_num_rows($result) > 0) {
-        $appointment = mysqli_fetch_assoc($result);
-    } else {
-        echo "Appointment not found.";
-        exit();
-    }
-} else {
-    echo "Appointment ID not provided.";
-    exit();
-}
-
-// Update appointment details
-if(isset($_POST['update'])) {
-    $name = mysqli_real_escape_string($conn, $_POST['name']);
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $contact_number = mysqli_real_escape_string($conn, $_POST['contact_number']);
-    $car_model = mysqli_real_escape_string($conn, $_POST['car_model']);
-    $year_model = mysqli_real_escape_string($conn, $_POST['year_model']);
-    $preferred_service = mysqli_real_escape_string($conn, $_POST['preferred_service']);
-    $date = mysqli_real_escape_string($conn, $_POST['date']);
-    $time = mysqli_real_escape_string($conn, $_POST['time']);
-    $additional_message = mysqli_real_escape_string($conn, $_POST['additional_message']);
-
-    $update_query = "UPDATE appointments SET name='$name', email='$email', contact_number='$contact_number', car_model='$car_model', 
-                     year_model='$year_model', preferred_service='$preferred_service', date='$date', time='$time', 
-                     additional_message='$additional_message' WHERE id='$appointment_id'";
-
-    if(mysqli_query($conn, $update_query)) {
-        header("Location: client_view.php?id=$appointment_id");
-        exit();
-    } else {
-        echo "Error updating appointment: " . mysqli_error($conn);
-    }
-}
-?>
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet"> <!-- Font Awesome CSS -->
-  <title>Edit Appointment</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Information</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px; /* Adjust width as needed */
+    height: 200px; /* Adjust height as needed */
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-  <div class="container mt-4">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="card">
-          <div class="card-header">
-            <h4>Edit Appointment</h4>
-          </div>
-          <div class="card-body">
-            <form method="POST" action="">
-              <div class="mb-3">
-                <label for="name" class="form-label">Name</label>
-                <input type="text" class="form-control" id="name" name="name" value="<?php echo $appointment['name']; ?>">
-              </div>
-              <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email" value="<?php echo $appointment['email']; ?>">
-              </div>
-              <div class="mb-3">
-                <label for="contact_number" class="form-label">Contact Number</label>
-                <input type="text" class="form-control" id="contact_number" name="contact_number" value="<?php echo $appointment['contact_number']; ?>">
-              </div>
-              <div class="mb-3">
-                <label for="car_model" class="form-label">Car Model</label>
-                <input type="text" class="form-control" id="car_model" name="car_model" value="<?php echo $appointment['car_model']; ?>">
-              </div>
-              <div class="mb-3">
-                <label for="year_model" class="form-label">Year Model</label>
-                <input type="text" class="form-control" id="year_model" name="year_model" value="<?php echo $appointment['year_model']; ?>">
-              </div>
-              <div class="mb-3">
-                <label for="preferred_service" class="form-label">Preferred Service</label>
-                <input type="text" class="form-control" id="preferred_service" name="preferred_service" value="<?php echo $appointment['preferred_service']; ?>">
-              </div>
-              <div class="mb-3">
-                <label for="date" class="form-label">Date</label>
-                <input type="date" class="form-control" id="date" name="date" value="<?php echo $appointment['date']; ?>">
-              </div>
-              <div class="mb-3">
-                <label for="time" class="form-label">Time</label>
-                <input type="time" class="form-control" id="time" name="time" value="<?php echo $appointment['time']; ?>">
-              </div>
-              <div class="mb-3">
-                <label for="additional_message" class="form-label">Additional Message</label>
-                <textarea class="form-control" id="additional_message" name="additional_message"><?php echo $appointment['additional_message']; ?></textarea>
-              </div>
-              <button type="submit" class="btn btn-primary" name="update">Update</button>
-              <a href="client_view.php?id=<?php echo $appointment['id']; ?>" class="btn btn-secondary">Cancel</a>
-            </form>
-          </div>
+    <?php
+    // Include database connection
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $database = "kool7_car_aircon_specialist";
+
+    $conn = new mysqli($servername, $username, $password, $database);
+
+    // Handle form submissions
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update"])) {
+        // Handle update operation
+        $table = $_POST["table"];
+        $id = $_POST["id"];
+        $set_values = array();
+        foreach ($_POST as $key => $value) {
+            if ($key != "update" && $key != "table" && $key != "id") {
+                $set_values[] = "$key='" . $conn->real_escape_string($value) . "'";
+            }
+        }
+        $sql = "UPDATE $table SET " . implode(",", $set_values) . " WHERE id=$id";
+        $conn->query($sql);
+    }
+
+    // Fetch data from each table and display CRUD forms
+    $tables = array("about_us", "contact_info", "packages", "services", "testimonials");
+
+    foreach ($tables as $table) {
+        $sql = "SELECT * FROM $table";
+        $result = $conn->query($sql);
+        ?>
+
+        <h2><?php echo ucwords(str_replace('_', ' ', $table)); ?></h2>
+
+        <!-- Table to display records -->
+        <table>
+            <tr>
+                <?php
+                $sql_columns = "SHOW COLUMNS FROM $table";
+                $result_columns = $conn->query($sql_columns);
+                while ($row = $result_columns->fetch_assoc()) {
+                    echo "<th>" . ucwords(str_replace('_', ' ', $row["Field"])) . "</th>";
+                }
+                ?>
+                <th>Action</th>
+            </tr>
+            <?php
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    foreach ($row as $key => $value) {
+                        echo "<td>$value</td>";
+                    }
+                    echo "<td>
+                            <button onclick='openModal(\"$table\", " . $row["id"] . ")'>Update</button>
+                        </td>";
+                    echo "</tr>";
+                }
+            } else {
+                echo "<tr><td colspan='" . ($result_columns->num_rows + 1) . "'>No records found</td></tr>";
+            }
+            ?>
+        </table>
+
+        <!-- Modal for update -->
+        <div id="<?php echo $table . 'Modal'; ?>" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('<?php echo $table . 'Modal'; ?>')">&times;</span>
+                <h2>Update <?php echo ucwords(str_replace('_', ' ', $table)); ?></h2>
+                <form id="<?php echo $table . 'Form'; ?>" method="post">
+                    <input type="hidden" name="table" value="<?php echo $table; ?>">
+                    <input type="hidden" name="id" id="<?php echo $table . 'Id'; ?>">
+                    <?php
+                    $sql_columns = "SHOW COLUMNS FROM $table";
+                    $result_columns = $conn->query($sql_columns);
+                    while ($row = $result_columns->fetch_assoc()) {
+                        if ($row["Field"] != 'id') {
+                            echo "<input type='text' name='" . $row["Field"] . "' id='" . $row["Field"] . "' placeholder='" . ucwords(str_replace('_', ' ', $row["Field"])) . "' required><br>";
+                        }
+                    }
+                    ?>
+                    <button type="button" onclick="submitUpdate('<?php echo $table . 'Form'; ?>')">Update</button>
+                </form>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <?php
+    }
+
+    // Close database connection
+    $conn->close();
+    ?>
+
+    <script>
+        // Function to open modal
+        function openModal(table, id) {
+            var modal = document.getElementById(table + "Modal");
+            modal.style.display = "block";
+            document.getElementById(table + "Id").value = id;
+
+            // Fetch data of selected record and populate form fields
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var data = JSON.parse(this.responseText);
+                    for (var key in data) {
+                        if (data.hasOwnProperty(key)) {
+                            document.getElementById(key).value = data[key];
+                        }
+                    }
+                }
+            };
+            xhr.open("GET", "fetch_record.php?table=" + table + "&id=" + id, true);
+            xhr.send();
+        }
+
+        // Function to close modal
+        function closeModal(modalId) {
+            var modal = document.getElementById(modalId);
+            modal.style.display = "none";
+        }
+
+        // Function to submit update form
+        function submitUpdate(formId) {
+            var form = document.getElementById(formId);
+            form.submit();
+        }
+    </script>
 </body>
 </html>

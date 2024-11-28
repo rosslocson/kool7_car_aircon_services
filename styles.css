@@ -406,7 +406,7 @@ nav {
   font-size: 1rem;
 }
 
-.price__card h4 {
+.price__card h5 {
   font-size: 1.2rem;
   font-weight: 600;
   color: var(--secondary-color-dark);
@@ -426,7 +426,7 @@ nav {
   color: var(--text-light);
 }
 
-.price__card:hover h3 {
+.price__card:hover h4 {
   color: var(--primary-color);
 }
 
@@ -754,4 +754,10 @@ nav {
   width: 100%;
   height: 100%;
   border: 0;
+}
+
+
+/* Example media query for smaller screens */
+@media (max-width: 768px) {
+  /* CSS rules for smaller screens */
 }
