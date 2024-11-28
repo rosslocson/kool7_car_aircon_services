@@ -48,6 +48,7 @@ $result = $conn->query($sql);
           <li><a href="#contactus">CONTACT US</a></li>
           <li><a href="#price">PACKAGES</a></li>
           <li><a href="#client">CLIENT</a></li>
+          <li><a href="userlogin.php"><i class="fa fa-user" style="color:white"></i></a></li>
         </ul>
       </nav>
     </header>
