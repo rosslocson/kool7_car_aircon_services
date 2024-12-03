@@ -123,11 +123,11 @@
     <nav class="navbar navbar-default navbar-fixed-top">
 
        
-        <a href="index.html"><img src="logo 2.png" alt="logo" height="45px" width="auto"></a>
-        <a class="navbar-brand" href="index.html" style="color:white;">Kool 7 Car Aircon Services</a>
+        <a href="index.php"><img src="logo 2.png" alt="logo" height="45px" width="auto"></a>
+        <a class="navbar-brand" href="index.php" style="color:white;">Kool 7 Car Aircon Services</a>
 
         <ul class="navbar-right">
-            <li><a href="index.html"><i class="fa fa-home"></i>   HOME</a></li>
+            <li><a href="index.php"><i class="fa fa-home"></i>   HOME</a></li>
         </ul>
 
     </nav>

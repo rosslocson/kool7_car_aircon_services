@@ -24,7 +24,7 @@ if (isset($_GET['id'])) {
                 <div class="card">
                     <div class="card-header">
                         <h4>Edit Client 
-                            <a href="index.html" class="btn btn-danger float-end">BACK</a>
+                            <a href="index.php" class="btn btn-danger float-end">BACK</a>
                         </h4>
                     </div>
                     <div class="card-body">
