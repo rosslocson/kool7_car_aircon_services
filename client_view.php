@@ -26,7 +26,7 @@ if (isset($_GET['id'])) {
                     <div class="card-header">
                         <h4>Client Details 
                             <!-- Change the href attribute to index.php -->
-                            <a href="index.php" class="btn btn-danger float-end">Back</a>
+                            <a href="userdashboard.php" class="btn btn-danger float-end">Back</a>
                             <!-- Edit button added here -->
                             <a href="client_edit.php?id=<?= $client['id']; ?>" class="btn btn-primary float-end me-2">Edit</a>
                         </h4>

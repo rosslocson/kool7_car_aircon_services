@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Login Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: beige; 
+        }
+
+        .container {
+            display: flex;
+            width: 800px;
+            height: 500px;
+            background-color: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            border-color: #262626;
+            border-style: double;
+        }
+
+        .illustration {
+            background: #262626;
+            color: #fff;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .illustration img {
+            width: 80%;
+            max-width: 300px;
+        }
+
+        .illustration p {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .form-section {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .form-section h2 {
+            margin: 0 0 10px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .form-section p {
+            margin: 0 0 30px;
+            color: #777;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .form-group input {
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .form-group input:focus {
+            border-color: #6c63ff;
+        }
+
+        .form-section a {
+            color: #6c63ff;
+            text-decoration: none;
+            font-size: 12px;
+            text-align: right;
+        }
+
+        .form-section a:hover {
+            text-decoration: underline;
+        }
+
+        .form-section button {
+            padding: 10px;
+            background: #c00427;
+            color: #fff;
+            font-size: 14px;
+            font-weight: bolder;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            width: 50%;
+            justify-content: center;
+
+        }
+
+        .form-section button:hover {
+            background: #AB4459;
+           
+            border-color: black;
+           
+        }
+
+        .form-section .create-account {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .form-section .create-account a {
+            color: #c00427;
+            text-decoration: none;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Illustration Section -->
+        <div class="illustration">
+            <img src="logo 2.png" alt="Illustration">
+            <p>Login to your account to get a full user experience</p>
+        </div>
+        <!-- Form Section -->
+        <div class="form-section">
+            <h2>Hello! <br> Good Morning</h2>
+            <p>Login your account</p>
+            <form action="user_login.php" method="post" name="form2">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                </div>
+                
+                <button type="submit">Login</button>
+                <div class="create-account">
+                    <p>Don't have an account? <a href="#">Create Account</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>User Login</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+
+
+        }
+
+        body {
+            color: white;
+            line-height: 2.48;
+            margin: 0;
+            padding: 0;
+        }
+
+        #login {
+            margin: 0 auto;
+            padding: 30px;
+            background-color: white;
+            text-align: center;
+            width: 100%;
+            padding-top: 60px;
+        }
+
+        #login img {
+            width: 150px;
+
+        }
+
+        #login .form-group {
+            max-width: 300px;
+            margin: 0 auto;
+
+
+        }
+
+        #login .form-control {
+            border-radius: 20;
+            box-shadow: none;
+
+        }
+
+        .form-container {
+            background-image: url(form.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+            padding: 8px;
+            border-radius: 3%;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            max-width: 28%;
+            margin: 0 auto;
+            margin-top: 30px;
+            background-color: #262626;
+
+        }
+
+        .form-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            background-color: white;
+            padding: 8px;
+            height: 30px;
+            border-radius: 10px;
+            width: 80%;
+        }
+
+        .form-group .icon {
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 10px;
+
+        }
+
+        .form-group .icon:hover {
+            background-color: white;
+        }
+
+        .form-group .icon i {
+            color: #262626;
+        }
+
+        .form-group input {
+
+            border: none;
+            outline: none;
+            background: none;
+            color: black;
+            font-size: 14px;
+            flex: 1;
+        }
+
+        .form-group input::placeholder {
+            color: #cdd3d8;
+        }
+
+        .form-container a {
+            color: white;
+        }
+
+        li {
+            list-style: none;
+            color: white;
+        }
+
+        .navbar-fixed-top {
+            background-color: #262626;
+        }
+
+        .btn-primary {
+            width: 30%;
+            background-color: #c00427;
+            border-color: #c00427;
+            color: white;
+            border-radius: 10px;
+            font-weight: bolder;
+        }
+
+        .btn-primary:hover {
+            background-color: white;
+            border-color: white;
+            color: black;
+        }
+
+        footer {
+            background-color: #262626;
+            color: white;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 0;
+        }
+
+        footer a {
+            color: white;
+
+            margin: 0 5px;
+            font-size: 12px;
+        }
+
+        footer a:hover {
+            color: lightgray;
+        }
+
+
+
+        #myNavbar .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .navbar-left {
+            display: flex;
+            align-items: center;
+            /* Vertically centers the content */
+
+            /* Centers all items horizontally */
+            background-color: #262626;
+            padding: 5px 15px;
+            gap: 10px;
+        }
+
+        nav {
+            font-weight: bolder;
+        }
+
+
+        .navbar-right {
+            display: flex;
+            align-items: center;
+            /* Ensures vertical alignment */
+            margin-right: 30px;
+           padding-top: 10px;
+        }
+
+        .navbar-right a {
+           
+            color: white;
+            text-decoration: none;
+        
+            gap: 5px;
+            /* Adds space between the icon and the text */
+        }
+
+        .navbar-right a:hover {
+            color: lightgray;
+            /* Change color on hover */
+        }
+    </style>
+
+</head>
+
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="navbar-left">
+            <a href="index.php"><img src="logo 2.png" alt="logo" height="45px" width="auto"></a>
+
+            <a href="index.php" style="color:white;">KOOL 7 Car Aircon Services</a>
+        </div>
+
+        <div class="navbar-right">
+            <a href="index.php"><i class="fa fa-home"></i> Home</a>
+        </div>
+
+    </nav>
+
+
+    <!--Log in Section -->
+    <div id="login" class="container-fluid text-center bg-light">
+        <div class="form-container">
+
+
+
+            <h3 style="color: white"> Login </h3>
+            <br>
+            <form action="user_login.php" method="post" name="form2">
+
+                <label for="email">Email Address</label>
+                <div class="form-group">
+
+                    <div class="icon"><i class="fas fa-envelope"></i></div>
+                    <input type="email" name="email" class="form-control" id="email" required>
+                </div>
+                <br>
+                <label for="email">Password</label>
+                <div class="form-group">
+                    <div class="icon"><i class="fas fa-lock"></i></div>
+                    <input type="password" name="password" class="form-control" id="password" required>
+                </div>
+                <br>
+                <button type="submit" name="login" class="btn btn-primary">Log In</button>
+                <br><br>
+                <p><a href="createuseraccount.php">Create an account</a>
+                </p>
+            </form>
+        </div>
+    </div>
+    <!-- FOOTER -->
+    <div>
+        <footer class="container-fluid text-center">
+            <div class="row">
+                <div class="col-sm-12">
+                    <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.tiktok.com" target="_blank"><i class="fab fa-tiktok"></i></a>
+
+                </div>
+                <div id="footernames">
+                    <div class="col-sm-12">
+                        <h6>ESTRAÑO • CATIPON • LOCSON • PERONA</h6>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script>
+        $(document).ready(function () {
+            // Add smooth scrolling to all links in navbar + footer link
+            $(".navbar a, footer a[href='#myPage']").on('click', function (event) {
+                // Make sure this.hash has a value before overriding default behavior
+                if (this.hash !== "") {
+                    // Prevent default anchor click behavior
+                    event.preventDefault();
+
+                    // Store hash
+                    var hash = this.hash;
+
+                    // Using jQuery's animate() method to add smooth page scroll
+                    // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+                    $('html, body').animate({
+                        scrollTop: $(hash).offset().top
+                    }, 900, function () {
+
+                        // Add hash (#) to URL when done scrolling (default click behavior)
+                        window.location.hash = hash;
+                    });
+                } // End if
+            });
+
+            $(window).scroll(function () {
+                $(".slideanim").each(function () {
+                    var pos = $(this).offset().top;
+
+                    var winTop = $(window).scrollTop();
+                    if (pos < winTop + 600) {
+                        $(this).addClass("slide");
+                    }
+                });
+            });
+        })
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+</body>
+
+</html>

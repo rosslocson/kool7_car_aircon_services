@@ -1,0 +1,127 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    /* Ensure the body takes up the full viewport height */
+
+}
+
+.header {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+}
+
+.header .nav__bar {
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.header .nav__logo img {
+    height: 50px;
+    margin-right: 10px;
+}
+
+
+.nav__links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.nav__links li {
+    margin-left: 100px;
+
+}
+
+.nav__links a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    text-align: right;
+}
+
+.nav__links a:hover {
+    color: #c00427;
+}
+
+.profile-container {
+    background-color: beige;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 40px;
+    width: 90%;
+    /* Adjust width as needed for responsiveness */
+    max-width: 600px;
+    text-align: left;
+}
+
+.profile-container img {
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.profile-container ul {
+    list-style: none;
+    padding: 0;
+}
+
+.profile-container ul li {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+#editbutton,
+#updatebutton {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#editbutton:hover,
+#updatebutton:hover {
+    background-color: #0056b3;
+}
+
+#editProfileForm {
+    margin-top: 20px;
+}
+
+#editProfileForm ul li {
+    margin-bottom: 15px;
+}
+
+#editProfileForm input,
+#editProfileForm select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+footer {
+    margin-top: 50px;
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+}

@@ -29,6 +29,9 @@ $result = $conn->query($sql);
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="styles.css">
     <title>Kool 7 Car Aricon Specialist</title>
   </head>
@@ -36,7 +39,7 @@ $result = $conn->query($sql);
     <header class="header">
       <nav class="nav__bar" id="navBar">
         <div class="logo nav__logo">
-          <a href="#"><img src="logo 2.png" alt="logo" /></a>
+          <a href="#"><img src="logo 2.png" alt="logo"></a>
         </div>
         <div class="nav__menu__btn" id="menu-btn">
           <i class="ri-menu-3-line"></i>
@@ -44,11 +47,11 @@ $result = $conn->query($sql);
         <ul class="nav__links" id="nav-links">
           <li><a href="#home">HOME</a></li>
           <li><a href="#about">ABOUT</a></li>
-          <li><a href="#service">SERVICE</a></li>
+          <li><a href="#service">SERVICES</a></li>
           <li><a href="#contactus">CONTACT US</a></li>
           <li><a href="#price">PACKAGES</a></li>
-          <li><a href="#client">CLIENT</a></li>
-          <li><a href="userlogin.php"><i class="fa fa-user" style="color:white"></i></a></li>
+          <li><a href="#client">FEEDBACKS</a></li>
+          <li><a href="userlogin.php"><i class="fa fa-user" style="color:white"></i>   Log In</i></a></li>
         </ul>
       </nav>
     </header>

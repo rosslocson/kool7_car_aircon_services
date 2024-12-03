@@ -117,7 +117,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
      
     <!-- "Back to Home" button -->
-<a href="index.php" class="back-to-home-button" style="color: white;">Back to Home</a>
+<a href="userdashboard.php" class="back-to-home-button" style="color: white;">Back to Home</a>
 
 
     <!-- JavaScript to show confirmation message -->

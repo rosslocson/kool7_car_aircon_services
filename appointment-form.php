@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+// Check if the user is logged in
+if (!isset($_SESSION['email'])) {
+    // If not logged in, redirect to login page
+    header("Location: user_login.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +16,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Book Your Appointment</title>
   <link rel="stylesheet" href="form-style.css">
-  <link rel="stylesheet" href="appointment-style.css"> <!-- New CSS file for appointment page -->
+  <link rel="stylesheet" href="styles_user.css"> <!-- New CSS file for appointment page -->
   <style>
     /* Basic styles for the navigation bar */
     nav {
@@ -36,19 +47,28 @@
     li a:hover {
       background-color: #111;
     }
+
+    h1, h2 {
+      text-align: center;
+      padding-bottom: 20px;
+    }
+
+    .input {
+      font-size:20px;
+    }
   </style>
 </head>
 <body>
 
 <nav>
   <ul>
-    <li><a href="index.php">Back to Home</a></li>
+    <li><a href="userdashobard.php">Back Home</a></li>
   </ul>
 </nav>
   
   
 <div class="container">
-    <div class="header">
+    <div class="header1">
       <h1>Book Your Appointment</h1>
     </div>
     <div class="content">
