@@ -98,7 +98,7 @@ if(isset($_GET['search'])) {
         <div class="card">
           <div class="card-header">
             <h4>Clients
-              <a href="index.php" class="btn btn-primary float-end"><i class=""></i>Exit</a>
+              <a href="index.html" class="btn btn-primary float-end"><i class=""></i>Exit</a>
             </h4>
           </div>
           <div class="card-body">

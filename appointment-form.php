@@ -118,7 +118,7 @@ if (!isset($_SESSION['email'])) {
             <textarea name="message" id="message" placeholder="Let us know of any specific concerns or requests"></textarea>
           </div>
           <button type="submit">Confirm</button>
-          <a href="index.php"><button type="button">Go Back</button></a>
+          <a href="index.html"><button type="button">Go Back</button></a>
         </form>
       </div>
     </div>

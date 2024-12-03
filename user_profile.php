@@ -242,7 +242,7 @@ while ($booking = mysqli_fetch_assoc($bookingsResult)) {
         <nav class="nav__bar">
 
             <div class="logo nav__logo">
-                <a href="index.php"><img src="logo 2.png" alt="logo" height="50px"></a>
+                <a href="index.html"><img src="logo 2.png" alt="logo" height="50px"></a>
 
 
 
