@@ -1,26 +1,7 @@
+
 <?php
-// for contact_info table
-// Database connection parameters
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "kool7_car_aircon_specialist";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $database);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// SQL query to select data from your table
-$sql = "SELECT id, phone, address, email FROM contact_info";
-
-// Execute the query
-$result = $conn->query($sql);
-?>
-
+    include 'index.php';
+    ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -36,7 +17,9 @@ $result = $conn->query($sql);
     <title>Kool 7 Car Aricon Specialist</title>
   </head>
   <body>
+    
     <header class="header">
+      
       <nav class="nav__bar" id="navBar">
         <div class="logo nav__logo">
           <a href="#"><img src="logo 2.png" alt="logo"></a>
