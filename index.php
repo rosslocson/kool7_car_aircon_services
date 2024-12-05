@@ -38,6 +38,17 @@ $result = $conn->query($sql);
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="styles.css">
     <title>Kool 7 Car Aricon Specialist</title>
+    <style>
+      
+.nav__links li a:hover {
+ 
+  color: #c00427;
+}
+
+.nav__links li: hover {
+  color: #c00427;
+}
+    </style>
   </head>
   <body>
     

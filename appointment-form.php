@@ -62,7 +62,7 @@ if (!isset($_SESSION['email'])) {
 
 <nav>
   <ul>
-    <li><a href="userdashobard.php">Back Home</a></li>
+    <li><a href="userdashboard.php">Back Home</a></li>
   </ul>
 </nav>
   
