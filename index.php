@@ -37,18 +37,8 @@ $result = $conn->query($sql);
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="styles.css">
-    <title>Kool 7 Car Aricon Specialist</title>
-    <style>
-      
-.nav__links li a:hover {
- 
-  color: #c00427;
-}
-
-.nav__links li: hover {
-  color: #c00427;
-}
-    </style>
+    <title>Kool 7 Car Airon Specialist Home Page</title>
+    
   </head>
   <body>
     

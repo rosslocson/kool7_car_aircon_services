@@ -16,7 +16,7 @@ if (!isset($_SESSION['email'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Book Your Appointment</title>
   <link rel="stylesheet" href="form-style.css">
-  <link rel="stylesheet" href="styles_user.css"> <!-- New CSS file for appointment page -->
+
   <style>
     /* Basic styles for the navigation bar */
     nav {
@@ -56,6 +56,7 @@ if (!isset($_SESSION['email'])) {
     .input {
       font-size:20px;
     }
+
   </style>
 </head>
 <body>

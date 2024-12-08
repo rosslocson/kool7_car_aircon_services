@@ -191,10 +191,6 @@ nav {
     margin-bottom: 10px; /* Add some space between button and links */
 }
 
-.nav__menu__btn:hover {
-  text-decoration: underline;
-  color: #c00427;
-}
 
 .nav__links {
   display: flex;
@@ -211,10 +207,6 @@ nav {
   transition: text-decoration-color 0.3s ease;
 }
 
-.nav__links:hover {
-  text-decoration: underline;
-  text-decoration-color: #c00427;
-}
 
 .nav__links.open {
   transform: translateY(0);
